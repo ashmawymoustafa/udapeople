@@ -194,7 +194,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - install ansible
+      - install_ansible
       - add_ssh_keys:
           fingerprints: ["b7:4e:23:64:06:7f:44:2b:33:a2:09:83:82:dd:6b:70"]
       - attach_workspace:
