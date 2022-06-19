@@ -38,14 +38,15 @@ commands:
     revert-migrations:
       description: Revert the last migration
       parameters:
-          workflow_id:
-              type: string      
+          Workflow_ID:
+              type: string
+              default: ${CIRCLE_WORKFLOW_ID:0:7}       
       steps:
           - run:
               name: Revert migrations
               when: on_fail
               command: |
-                  SUCCESS=$(curl --insecure  https://kvdb.io/9GE4jRtKznmVKRfvdBABBe/migration_<< parameters.workflow_id >>)
+                  SUCCESS=$(curl --insecure  https://kvdb.io/{KVDB_BUCKET}/migration_<< parameters.workflow_id >>)
                   # Logic for reverting the database state
                   if (( $SUCCESS == 1 ));
                   then
